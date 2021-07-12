@@ -43,7 +43,7 @@ namespace MarsRoverTests
         public void DoesNotMoveInLowPower()
         {
             Rover newRover = new Rover(300);
-            Command[] commands = { new Command("MOVE") };
+            Command[] commands = { new Command("MOVE", 200), new Command("MODE_CHANGE", "LOW_POWER") };
             Message newMessage = new Message("Hi", commands);
             newRover.ReceiveMessage(newMessage);
             Assert.AreEqual(newRover.Mode, "LOW_POWER");
@@ -56,7 +56,7 @@ namespace MarsRoverTests
             Command[] commands = { new Command("MOVE", 200) };
             Message newMessage = new Message("Hi", commands);
             newRover.ReceiveMessage(newMessage);
-            Assert.AreEqual(newRover.Mode, "NORMAL");
+            Assert.AreEqual(newRover.Position, 200);
         }
     }
 }
