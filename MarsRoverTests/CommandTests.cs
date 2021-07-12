@@ -18,6 +18,7 @@ namespace MarsRoverTests
             catch (ArgumentNullException ex)
             {
                 Assert.AreEqual("Command type required.", ex.Message);
+                //Assert.AreEqual("Oops", ex.Message);
             }
         }
 
@@ -33,6 +34,13 @@ namespace MarsRoverTests
         {
             Command newCommand = new Command("MOVE", 20);
             Assert.AreEqual(newCommand.NewPostion, 20);
+        }
+
+        [TestMethod]
+        public void ConstructorSetsInitialNewModeValue()
+        {
+            Command newCommand = new Command("MODE_CHANGE", "LOW_POWER");
+            Assert.AreEqual(newCommand.NewMode, "LOW_POWER");
         }
 
     }
